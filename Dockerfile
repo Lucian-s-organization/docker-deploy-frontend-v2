@@ -1,3 +1,6 @@
+# ==========================================
+# Stage 1: Build the frontend application
+# ==========================================
 FROM node:22-alpine AS build-stage
 
 WORKDIR /app
@@ -14,7 +17,9 @@ RUN VITE_GRAPHQL_URI=__VITE_GRAPHQL_URI_PLACEHOLDER__ \
     VITE_SERVER_URI=__VITE_SERVER_URI_PLACEHOLDER__ \
     npm run build -- --mode production
 
+# ==========================================
 # Stage 2: Production stage with Nginx
+# ==========================================
 FROM nginx:alpine AS production-stage
 
 # Copy custom Nginx configuration
