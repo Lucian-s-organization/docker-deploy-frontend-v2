@@ -1,7 +1,10 @@
 services:
-  frontend: 
-    image: wenyillaisi/234-deploylab-frontend:latest
+  backend: # 注：原文这里写的是 backend，但根据上下文应为 frontend 服务配置环境变量
+    image: wenyillaisi/234-deploylab-backend:latest 
     pull_policy: always
     ports:
-     - "8081:8080"
+      - "8081:8080"
+    environment:
+      - VITE_GRAPHQL_URI=http://[Your_IP_or_Hostname]/graphql
+      - VITE_SERVER_URI=http://[Your_IP_or_Hostname]:8082
     restart: unless-stopped
