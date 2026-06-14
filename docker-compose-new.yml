@@ -1,0 +1,11 @@
+services:
+  frontend:
+    image: wenyillaisi/234-deploylab-frontend:latest
+    pull_policy: always
+    ports:
+      - "8084:80"    # 建议把新前端也换个端口，比如 8084，方便对比展示
+    environment:
+      # 指向刚才部署的 8083 新后端
+      - VITE_GRAPHQL_URI=http://23.23.35.39:8083/graphql
+      - VITE_SERVER_URI=http://23.23.35.39:8083
+    restart: unless-stopped
